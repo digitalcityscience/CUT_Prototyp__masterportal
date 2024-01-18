@@ -15,8 +15,8 @@
 styleguide
 .history
 
-addons/*
-!addons/readme.txt
+addons
+portal
 
 bowerupdate.log
 build
