@@ -8,18 +8,15 @@ WORKDIR /app
 # Will also clone the submodules
 
 # git submodule init // update
-RUN git clone  --recurse-submodules https://github.com/digitalcityscience/CUT_Prototyp__masterportal /app
+COPY . /app
 
-# Switch to the "portal" folder and install dependencies
-WORKDIR /app/portal
-RUN npm install
-
-# Switch to the "addons" folder and install dependencies
-WORKDIR /app/addons
-RUN npm install
-
-# Switch back to the app folder and build the main project for production
 WORKDIR /app
+
+# After the initial clone of the main repository update the submodules
+# TODO doesn't work in deployment like this , as no gituser auth..
+# Try git token as secret in the drone settings on github.
+RUN git submodule init
+RUN git submodule update --recursive
 
 # install dependencies
 RUN npm install
@@ -34,7 +31,7 @@ FROM nginx:latest
 WORKDIR /app
 
 # Copy the built files from the builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html/portal
 
 # Expose port 80 to serve the app
 EXPOSE 80
