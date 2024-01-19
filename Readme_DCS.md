@@ -8,6 +8,17 @@ and references the repositories
 
 as *submodules* so that they can be deployed in their preferred state.
 
+# RUN IN DOCKER  (production mode)
+- clone this repo
+  
+> git submodule init
+
+> git submodule update --recursive
+
+> docker build -t "cut-prototyp" .
+
+> docker run -p 80:80 cut-prototyp
+
 ## Branches
 ### masterportal-dev-lgv
 
