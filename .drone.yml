@@ -8,6 +8,9 @@ steps:
   image: alpine/git
   commands:
   - git submodule update --init --recursive
+  when:
+  status: [ success ]
+  branch: [ main ]
 
 - name: build and publish
   image: plugins/docker
