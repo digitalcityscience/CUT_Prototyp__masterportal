@@ -37,6 +37,9 @@
 ---
 
 ## v2.41.0 - 2024-01-08
+### Added
+- Issue #1038: Tooltips to display area of drawn polygons/squares and length of drawn lines
+
 ### Changed
 - The version of node was updated to `^16.13.2 || ^18.16.0 || ^20.9.0`.
 - The version of npm was updated to `^8.1.2 || ^9.5.1 || ^10.1.0`
@@ -71,7 +74,6 @@
         - webpack-bundle-analyzer: 4.9.1
 - To manage dependencies of dependencies "overrides" for cesium are added to package.json and create dummy packages for it.
 - New Parameter sldVersion for legend configuration to define a Styled Layer Descriptor for the GetLegendGraphic requests.
-- Issue #1038: Tooltips to display area of drawn polygons/squares and length of drawn lines
 - Issue #1105: Added easting and nothing labels for utm projections in CoordToolkit
 - possibility to keep more than one tool open at the same time
 - Added parameter minChars to the locationFinder configuration of the searchBar.
