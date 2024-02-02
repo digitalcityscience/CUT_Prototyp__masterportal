@@ -39,6 +39,7 @@
 ## v2.41.0 - 2024-01-08
 ### Added
 - Issue #1038: Tooltips to display area of drawn polygons/squares and length of drawn lines
+- Added square as geometryType for drawingTool.
 
 ### Changed
 - The version of node was updated to `^16.13.2 || ^18.16.0 || ^20.9.0`.
@@ -81,7 +82,6 @@
 - Searchbar tree: add a layertree path to the search result. Add a typename for background layer.
 - Added opacity to configurable parameters of styleRoute
 - Added checkbox to determine if routes stay visible after closing the routing tool
-- Added square as geometryType for drawingTool.
 
 ### Changed
 - The script "npm run build" has been extended. The user can now specify the name of an addon that is excluded from bundle.
