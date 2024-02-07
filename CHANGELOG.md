@@ -7,6 +7,19 @@
 ### __Breaking Changes__
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+---
+
+## v2.42.0 - 2024-02-07
+
+### Added
 - Issue #1116: New alert for batchprocessing in routing tool informs the user when all requests to the service failed.
 - Filter: A new parameter `filterOnOpen` has been added to filterLayer in Filter. If set to true, the filter is triggered when the accordeon is clicked.
 - Print: An option "Improve scaling resolution" is implemented for 3d Layers to supply an improved and better resolution.
@@ -17,9 +30,6 @@
         - @masterportal/masterportalapi: 2.31.0 to 2.33.0 (This also raised ol to version 8.2.0 and @cesium/engine to version 6.2.0)
 - Added translations for Sensor Theme.
 
-### Deprecated
-
-### Removed
 
 ### Fixed
 - Issue #1110: Elastic Search: icons can be assigned via the search result.
