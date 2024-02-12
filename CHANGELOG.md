@@ -5,6 +5,7 @@
 
 ## Unreleased - in development
 ### __Breaking Changes__
+- Tree Search: the searchType (name or metadata) needs to be specified in the config.json and is not defaulted to "metadata" anymore.
 
 ### Added
 
