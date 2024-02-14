@@ -467,14 +467,14 @@ The WFS 2.0 query is dynamically created by the Masterportal. No stored query co
         "timeout": 10000,
         "definitions": [
             {
-                "url": "https://geodienste_hamburg_de/MRH_WFS_Rotenburg",
+                "url": "https://geodienste.hamburg.de/MRH_WFS_Rotenburg",
                 "typeName": "app:mrh_row_bplan",
                 "propertyNames": ["app:name"],
                 "name": "B-Plan",
                 "namespaces": "xmlns:app='http://www.deegree.org/app'"
             },
             {
-                "url": "https://geodienste_hamburg_de/HH_WFS_Bebauungsplaene",
+                "url": "https://geodienste.hamburg.de/HH_WFS_Bebauungsplaene",
                 "typeName": "app:prosin_imverfahren",
                 "propertyNames": ["app:plan"],
                 "geometryName": "app:the_geom",
@@ -509,7 +509,7 @@ SpecialWFS search definition configuration.
 
 ```json
 {
-    "url": "https://geodienste_hamburg_de/HH_WFS_Bebauungsplaene",
+    "url": "https://geodienste.hamburg.de/HH_WFS_Bebauungsplaene",
     "typeName": "app:prosin_imverfahren",
     "propertyNames": ["app:plan"],
     "geometryName": "app:the_geom",

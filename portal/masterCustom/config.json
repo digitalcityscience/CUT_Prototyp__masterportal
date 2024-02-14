@@ -36,7 +36,7 @@
         "minChar": 3,
         "definitions": [
           {
-            "url": "https://geodienste_hamburg_de/HH_WFS_Bebauungsplaene",
+            "url": "https://geodienste.hamburg.de/HH_WFS_Bebauungsplaene",
             "typeName": "app:hh_hh_festgestellt",
             "propertyNames": [
               "app:geltendes_planrecht"
@@ -46,7 +46,7 @@
             "namespaces": "xmlns:app='http://www.deegree.org/app'"
           },
           {
-            "url": "https://geodienste_hamburg_de/HH_WFS_Bebauungsplaene",
+            "url": "https://geodienste.hamburg.de/HH_WFS_Bebauungsplaene",
             "typeName": "app:prosin_imverfahren",
             "propertyNames": [
               "app:plan"
