@@ -91,7 +91,7 @@
 - Added parameter minChars to the locationFinder configuration of the searchBar.
 - utils/convertColor: added an option to convert an rgba array into a hex color with alpha value
 - Searchbar tree: 
-  - New 'config' parameter: searchType added. If set to "name", the field 'name' of the layer is searched for, else the filed 'md_name' in the dataset is compared.
+  - New 'config' parameter: searchType added. If set to "name", the field 'name' of the layer is searched for, else the field 'md_name' in the dataset is compared.
   - Add a layertree path to the search result. Add a typename for background layer.
 - Added opacity to configurable parameters of styleRoute
 - Added checkbox to determine if routes stay visible after closing the routing tool
