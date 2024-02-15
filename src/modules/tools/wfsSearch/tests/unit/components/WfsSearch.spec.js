@@ -15,7 +15,7 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         getGeometryName: () => "Klein bottle"
     };
 
-
+    const instanceChangedOrig = WfsSearchModule.actions.instanceChanged;
     let instances,
         store;
 
@@ -64,13 +64,16 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
                 }
             },
             getters: {
-                uiStyle: sinon.stub()
-                // mobile: () => false
+                uiStyle: sinon.stub(),
+                mobile: () => false
             }
         });
         store.commit("Tools/WfsSearch/setActive", true);
     });
     afterEach(sinon.restore);
+    after(() => {
+        WfsSearchModule.actions.instanceChanged = instanceChangedOrig;
+    });
 
     it("renders a literal", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);

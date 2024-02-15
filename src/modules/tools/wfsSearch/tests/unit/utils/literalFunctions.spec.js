@@ -1,5 +1,5 @@
 import {expect} from "chai";
-import {fieldValueChanged, prepareLiterals} from "../../../utils/literalFunctions";
+import literalFunctions from "../../../utils/literalFunctions";
 
 describe("src/modules/tools/wfsSearch/utils/literalFunctions.js", () => {
     const id = "wfsSearch-clause-0+field-0",
@@ -57,7 +57,7 @@ describe("src/modules/tools/wfsSearch/utils/literalFunctions.js", () => {
 
     describe("prepareLiterals", () => {
         it("should add unique ids to the clauses and fields", () => {
-            expect(prepareLiterals(stateLiterals)).to.eql(requiredValues);
+            expect(literalFunctions.prepareLiterals(stateLiterals)).to.eql(requiredValues);
         });
     });
 
@@ -65,7 +65,7 @@ describe("src/modules/tools/wfsSearch/utils/literalFunctions.js", () => {
         it("should update the required Values and return them", () => {
             const value = "Waldesch";
 
-            expect(fieldValueChanged(id, value, stateLiterals, requiredValues, 0)).to.eql({
+            expect(literalFunctions.fieldValueChanged(id, value, stateLiterals, requiredValues, 0)).to.eql({
                 [id]: value,
                 "wfsSearch-clause-0+field-2": null
             });
