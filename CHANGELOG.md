@@ -16,6 +16,8 @@
 ### Removed
 
 ### Fixed
+- Issue #1103: fixed error on tool wfsSearch with `active`=`true`.
+
 ---
 
 ## v2.42.0 - 2024-02-07
