@@ -12,10 +12,9 @@ config.mocks.$t = key => key;
 
 describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
     const arbitraryFeature = {
-        getGeometryName: () => "Klein bottle"
-    };
-
-    const instanceChangedOrig = WfsSearchModule.actions.instanceChanged;
+            getGeometryName: () => "Klein bottle"
+        },
+        instanceChangedOrig = WfsSearchModule.actions.instanceChanged;
     let instances,
         store;
 
