@@ -1,7 +1,7 @@
 import axios from "axios";
 import handleAxiosResponse from "../../../../utils/handleAxiosResponse";
 import {setLikeFilterProperties} from "../utils/buildFilter";
-import literalFunctions from "../utils/literalFunctions";
+import {createUserHelp, prepareLiterals, resetFieldValues} from "../utils/literalFunctions";
 
 const actions = {
     /**
@@ -34,8 +34,8 @@ const actions = {
                 service = {url: wfs.url || (wfs.get ? wfs.get("url") : undefined)};
 
             // NOTE: The extra object is sadly needed so that the object is reactive :(
-            commit("setRequiredValues", {...literalFunctions.prepareLiterals(currentInstance.literals)});
-            commit("setUserHelp", currentInstance.userHelp || literalFunctions.createUserHelp(currentInstance.literals));
+            commit("setRequiredValues", {...prepareLiterals(currentInstance.literals)});
+            commit("setUserHelp", currentInstance.userHelp || createUserHelp(currentInstance.literals));
 
             if (selectSource) {
                 dispatch("retrieveData");
@@ -96,7 +96,7 @@ const actions = {
         commit("setResults", []);
         commit("setSelectedOptions", {});
         dispatch("MapMarker/removePointMarker", null, {root: true});
-        literalFunctions.resetFieldValues(getters.currentInstance.literals);
+        resetFieldValues(getters.currentInstance.literals);
 
         // Reset dropdowns
         if (state.requiredValues !== null) {

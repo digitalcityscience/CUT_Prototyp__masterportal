@@ -42,7 +42,7 @@ function createLiteralStructure (stateLiterals, literals = null, userHelp = []) 
  * @param {Object[]} literals The literals for which the structure is built and which are parsed.
  * @returns {String} String representation for the structure of the given literal.
  */
-function createUserHelp (literals) {
+export function createUserHelp (literals) {
     const and = i18next.t("common:modules.tools.wfsSearch.userHelp.and"),
         or = i18next.t("common:modules.tools.wfsSearch.userHelp.or"),
         structure = createLiteralStructure(literals);
@@ -85,7 +85,7 @@ function createUserHelp (literals) {
  * @param {Object} [requiredValues = {}] The values required to be set by the user.
  * @returns {Object} Returns the current values for the required fields.
  */
-function prepareLiterals (stateLiterals, literals = null, clauseId = "", requiredValues = {}) {
+export function prepareLiterals (stateLiterals, literals = null, clauseId = "", requiredValues = {}) {
     const lit = literals === null ? stateLiterals : literals,
         idPrefix = clauseId ? clauseId + "+" : "wfsSearch-";
 
@@ -127,7 +127,7 @@ function prepareLiterals (stateLiterals, literals = null, clauseId = "", require
  * @param {?(Object[])} [literals = null] As the structure is recursively traversed, this value is an inner array of the stateLiterals.
  * @returns {Object} Returns the current values for the required fields.
  */
-function fieldValueChanged (id, value, stateLiterals, requiredValues, parameterIndex, literals = null) {
+export function fieldValueChanged (id, value, stateLiterals, requiredValues, parameterIndex, literals = null) {
     const arr = literals || stateLiterals;
 
     arr.forEach(literal => {
@@ -160,7 +160,7 @@ function fieldValueChanged (id, value, stateLiterals, requiredValues, parameterI
  * @param {?(Object[])} [literals = null] As the structure is recursively traversed, this value is an inner array of the instanceLiterals.
  * @returns {void}
  */
-function resetFieldValues (instanceLiterals, literals = null) {
+export function resetFieldValues (instanceLiterals, literals = null) {
     const arr = literals || instanceLiterals;
 
     arr.forEach(literal => {
@@ -172,10 +172,3 @@ function resetFieldValues (instanceLiterals, literals = null) {
         }
     });
 }
-
-export default {
-    createUserHelp,
-    fieldValueChanged,
-    prepareLiterals,
-    resetFieldValues
-};
