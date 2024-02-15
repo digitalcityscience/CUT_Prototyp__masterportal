@@ -38,6 +38,7 @@
 - Issue #1122: GFI-Window with desktopType "attached" is shown at clicked feature, if another feature is clicked.
 - GFI: if config Parameter `centerMapToClickPoint` is set to true, map is centered to feature on click, even if the mapmarker is not shown.
 - GroupLayer: deselection of Group Layer corrected when singleBaseLayer is set to true
+- ParametricUrl: Search queries by url parameter with more than one result: if one result matches exactly, the map view is zoomed to result.
 
 ---
 
