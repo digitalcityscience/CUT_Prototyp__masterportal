@@ -8,6 +8,7 @@
 - Tree Search: the searchType (name or metadata) needs to be specified in the config.json and is not defaulted to "metadata" anymore.
 
 ### Added
+- StatisticDashboard module in core tool modules
 
 ### Changed
 
@@ -97,7 +98,7 @@
 - possibility to keep more than one tool open at the same time
 - Added parameter minChars to the locationFinder configuration of the searchBar.
 - utils/convertColor: added an option to convert an rgba array into a hex color with alpha value
-- Searchbar tree: 
+- Searchbar tree:
   - New 'config' parameter: searchType added. If set to "name", the field 'name' of the layer is searched for, else the field 'md_name' in the dataset is compared.
   - Add a layertree path to the search result. Add a typename for background layer.
 - Added opacity to configurable parameters of styleRoute
