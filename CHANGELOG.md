@@ -17,7 +17,10 @@
 
 ### Fixed
 - Issue #1103: fixed error on tool wfsSearch with `active`=`true`.
-- Fix: Change env to Cross-env so windows powershell can run build script
+- Fix: Change env to cross-env so windows powershell can run build script
+- The following packages have been added:
+    - devDependencies:
+        - cross-env: 7.0.3
 
 ---
 
