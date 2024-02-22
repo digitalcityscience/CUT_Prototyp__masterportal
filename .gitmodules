@@ -1,0 +1,6 @@
+[submodule "addons"]
+	path = addons
+	url = git@github.com:digitalcityscience/CUT_Prototyp_masterportal_addon.git
+[submodule "portal"]
+	path = portal
+	url = git@github.com:digitalcityscience/CUT_Prototyp_masterportal_user.git
