@@ -82,11 +82,13 @@ const SearchbarModel = Backbone.Model.extend(/** @lends SearchbarModel.prototype
         if (store.state.urlParams && store.state.urlParams["Search/query"]) {
             // Speichere den Such-Parameter für die initiale Suche zur späteren Verwendung in der View
             this.setInitSearchString(store.state.urlParams["Search/query"]);
+            this.set("isSearchQuery", true);
         }
         else {
             // Es wird keine initiale Suche durchgeführt
             this.set("isInitialSearch", false);
             this.set("isInitialRecommendedListCreated", true);
+            this.set("isSearchQuery", false);
         }
 
         this.changeLang();

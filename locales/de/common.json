@@ -76,6 +76,7 @@
             "bufferAnalysis": "Buffer Analyse",
             "wfsSearch": "WFS Suche",
             "routing": "Routing",
+            "statisticDashboard": "Statistik Dashboard",
             "layerClusterToggler": "Layer-Gruppe öffnen",
             "login": "Login"
         },
@@ -506,6 +507,47 @@
                     "geometryParseError": "Die angegebene Geometry konnte nicht geladen werden"
                 }
             },
+            "statisticDashboard": {
+                "title": "Statistik Dashboard",
+                "headings": {
+                    "mrhstatistics": "Zahlen, Daten, Fakten der MRH - Regionalstatistik",
+                    "mrhstatisticsTooltip": "Link zu den Metadaten"
+                },
+                "button": {
+                    "difference": "Differenz",
+                    "table": "Tabelle",
+                    "chart": "Diagramm",
+                    "add": "Hinzufügen",
+                    "reset": "zurücksetzen",
+                    "filter": "Filter",
+                    "showMore": "weitere anzeigen...",
+                    "showLess": "weniger anzeigen..."
+                },
+                "label": {
+                    "category": "Kategorie",
+                    "area": "Gebiet",
+                    "year": "Jahr",
+                    "statistics": "Statistiken",
+                    "communities": "Gemeinden",
+                    "districts": "Kreise",
+                    "more": "mehr"
+                },
+                "filterInputs": {
+                    "additional": "Sonstiges"
+                },
+                "reference": {
+                    "title": "Referenzart",
+                    "description": "Differenzwerte darstellen, bezogen auf ein Referenzjahr oder Gebiet",
+                    "placeholder": "Bitte wählen Sie eine Option!",
+                    "tagLabel": "Referenz"
+                },
+                "legend": {
+                    "under": "unter",
+                    "between": "{{minimum}} bis unter {{maximum}}",
+                    "nodata": "Die Visualisierung der Daten von mehreren Statistiken auf der Karte steht noch nicht zur Verfügung.",
+                    "legend": "Kartenlegende"
+                }
+            },
             "pendler": {
                 "animation": {
                     "domicile": "Wohnort",
@@ -801,7 +843,8 @@
                             "nextWeekday": "Nächster Wochentag",
                             "noticeTextAvailable": "(Es werden ausschließlich Daten mit dem Wert available / verfügbar berücksichtigt)",
                             "noticeTextCharging": "(Es werden ausschließlich Daten mit dem Wert charging / ladend berücksichtigt)",
-                            "noticeTextOutoforder": "(Es werden ausschließlich Daten mit dem Wert outoforder / Außer Betrieb berücksichtigt)"
+                            "noticeTextOutoforder": "(Es werden ausschließlich Daten mit dem Wert outoforder / Außer Betrieb berücksichtigt)",
+                            "noticeTextFaulted": "(Es werden ausschließlich Daten mit dem Wert faulted / Fehlerzustand berücksichtigt)"
                         },
                         "sensorData": {
                             "firstColumnHeaderName": "Eigenschaften"
@@ -809,7 +852,8 @@
                         "chargingStations": {
                             "available": "Verfügbarkeit",
                             "charging": "Auslastung",
-                            "outoforder": "Außer Betrieb"
+                            "outoforder": "Außer Betrieb",
+                            "faulted": "Fehlerzustand"
                         }
                     }
                 },
@@ -1037,6 +1081,7 @@
                     "fetchingCoordinates": "Fehler bei Abfrage der Koordinaten",
                     "noRouteFound": "Leider konnte keine Route gefunden werden",
                     "avoidAreaBig": "Die angegebenen Sperrflächen sind zu groß. Bitte korrigieren Sie Ihre Eingabe.",
+                    "serviceBlocksRequest": "Die Anfrage wurde blockiert.",
                     "errorRouteFetch": "Fehler bei Abfrage der Route",
                     "errorIsochronesFetch": "Fehler bei Abfrage der Erreichbarkeit"
                 },
@@ -1085,6 +1130,7 @@
                     "keepRoutesAfterClose": "Die Route nach dem Schließen des Tools beibehalten",
                     "batchProcessing": {
                         "structure": "ID;lon(Startpunkt);lat(Startpunkt);lon(Endpunkt);lat(Endpunkt)",
+                        "errorAllFailed": "Alle Anfragen sind fehlgeschlagen. Eventuell wird die Anfrage vom Dienst blockiert. Die Datei enthält keine Resultate.",
                         "errorSomeFailed": "Es konnten {{countFailed}} Ergebnisse nicht korrekt errechnet werden. Die Ergebnisdatei enthält an diesen Stellen Leerzellen.",
                         "errorNoEntries": "Keine Einträge in der CSV",
                         "errorToManyEntriesInFile": "Maximale Anzahl an Zeilen überschritten ({{limit}})",
@@ -1117,6 +1163,7 @@
                     "legend": "Legende",
                     "batchProcessing": {
                         "structure": "ID;lon(Startpunkt);lat(Startpunkt)",
+                        "errorAllFailed": "Alle Anfragen sind fehlgeschlagen. Eventuell wird die Anfrage vom Dienst blockiert. Die Datei enthält keine Resultate.",
                         "errorSomeFailed": "Es konnten {{countFailed}} Ergebnisse nicht korrekt errechnet werden. Die Ergebnisdatei enthält an diesen Stellen Leerzellen.",
                         "errorNoEntries": "Keine Einträge in der CSV",
                         "errorToManyEntriesInFile": "Maximale Anzahl an Zeilen überschritten ({{limit}})",

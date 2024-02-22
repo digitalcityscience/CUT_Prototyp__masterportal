@@ -361,7 +361,8 @@ const SearchbarView = Backbone.View.extend(/** @lends SearchbarView.prototype */
     renderRecommendedList: function () {
         const attr = this.model.toJSON(),
             height = this.getDropdownHeight(),
-            width = this.$("#searchForm").width();
+            width = this.$("#searchForm").width(),
+            exactRecommendedHits = this.model.get("recommendedList").filter(hit => hit.name === this.model.get("initSearchString"));
 
         attr.uiStyle = uiStyle.getUiStyle();
 
@@ -382,9 +383,9 @@ const SearchbarView = Backbone.View.extend(/** @lends SearchbarView.prototype */
         this.$("ul.dropdown-menu-search").css("width", width);
         this.$("ul.dropdown-menu-search").css("max-width", width);
 
-        // With only one hit in the recommendedList, the marker is set directly
+        // With only one hit in the finalHitList or an exact match in recommendedList, the marker is set directly
         // and in case of a Tree-Search the menu folds out.
-        if (this.model.get("finalHitList").length === 1 && this.model.get("initSearchString") === this.model.get("finalHitList")[0].name) {
+        if (this.model.get("finalHitList").length === 1 && this.model.get("initSearchString") === this.model.get("finalHitList")[0].name || exactRecommendedHits.length === 1) {
             this.hitSelected();
         }
         this.$("#searchInput + span").css("display", "inline-flex");
@@ -456,9 +457,8 @@ const SearchbarView = Backbone.View.extend(/** @lends SearchbarView.prototype */
             hitID,
             pick,
             isElement = false;
-        const modelHitList = this.model.get("finalHitList");
+        const modelHitList = this.model.get("isSearchQuery") ? this.model.get("recommendedList") : this.model.get("finalHitList");
 
-        // distingiush hit
         if (evt && Object.prototype.hasOwnProperty.call(evt, "cid")) { // in this case, evt = model
             pick = Radio.request("Util", "pick", modelHitList, [0]);
 
@@ -467,13 +467,12 @@ const SearchbarView = Backbone.View.extend(/** @lends SearchbarView.prototype */
         else if (evt && Object.prototype.hasOwnProperty.call(evt, "currentTarget") === true && evt.currentTarget.id) {
             hitID = evt.currentTarget.id;
             hit = Radio.request("Util", "findWhereJs", this.model.get("finalHitList"), {"id": hitID});
-
         }
         else if (evt?.id) {
             hit = Radio.request("Util", "findWhereJs", this.model.get("finalHitList"), {"id": evt.id});
             isElement = true;
         }
-        else if (modelHitList.length > 1) {
+        else if (modelHitList.length > 1 && !this.model.get("isSearchQuery")) {
             return;
         }
         else {

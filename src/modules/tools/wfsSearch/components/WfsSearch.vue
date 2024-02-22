@@ -64,6 +64,9 @@ export default {
         }
     },
     created () {
+        if (this.active) {
+            this.instanceChanged(this.currentInstanceIndex);
+        }
         this.$on("close", this.close);
     },
     methods: {
