@@ -6,7 +6,7 @@
     "url": "https://www.masterportal.org"
   },
   "bugs": "https://bitbucket.org/geowerkstatt-hamburg/masterportal/issues",
-  "version": "2.41.1",
+  "version": "2.42.0",
   "license": "MIT",
   "description": "The MasterPortal as OpenSource Geoportal",
   "repository": {
@@ -20,8 +20,11 @@
     "test": "mochapack --webpack-config devtools/webpack.test.js --bail --recursive --timeout 15000 --file devtools/setupUnitTests.js \"./test/unittests/**/*.test.js\" \"./addons/**/unittests/*.test.js\"",
     "test:watch": "npm run test -- --watch",
     "test:vue": "mochapack --recursive --webpack-config devtools/webpack.vue.test.js --file devtools/setupUnitTests.js \"./src/**/*.spec.js\" \"./addons/*/!(node_modules)/**/*.spec.js\"",
+    "test:vue:excludeAddon": "mochapack --recursive --webpack-config devtools/webpack.vue.test.js --file devtools/setupUnitTests.js \"./src/**/*.spec.js\" \"./addons/!(cosi)/!(node_modules)/**/*.spec.js\"",
+    "test:vue:excludeAddon:watch": "npm run test:vue:excludeAddon -- --watch",
     "test:vue:watch": "npm run test:vue -- --watch",
     "test:all": "npm run test && npm run test:vue",
+    "test:all:excludeAddon": "npm run test && npm run test:vue:excludeAddon",
     "test:all:watch": "npm-run-all --parallel test:watch test:vue:watch",
     "browsertestWithDevServer": "env NODE_ENV=e2eTest env browser=fromCapabilities webpack-dev-server --reporter ./test/end2end/library/reporter.js --config devtools/webpack.browsertest.js",
     "browsertestOnExternalServer": "env browser=fromCapabilities env urlPart=\\/ ./node_modules/.bin/mocha --reporter ./test/end2end/library/reporter.js ./test/end2end/TestRunner.js",
@@ -41,6 +44,7 @@
     "versionMinor:all": "npm run versionMinor && cd addons && npm run versionMinor && cd .. && cd portalconfigs && npm run versionMinor && cd ..",
     "versionMajor:all": "npm run versionMajor && cd addons && npm run versionMajor && cd .. && cd portalconfigs && npm run versionMajor && cd ..",
     "prePushHook": "node ./node_modules/@masterportal/mpconfigparser/cli.js ./doc/config.json.md ./doc/config.json.de.md && eslint --max-warnings 0 \"./**/*.{vue,js}\" && npm run buildJsDoc && npm run test:all",
+    "prePushHookExcludeAddon": "node ./node_modules/@masterportal/mpconfigparser/cli.js ./doc/config.json.md ./doc/config.json.de.md && eslint --max-warnings 0 \"./**/*.{vue,js}\" && npm run buildJsDoc && npm run test:all:excludeAddon",
     "prepare": "husky install"
   },
   "@comment dependencies and devDependencies": [
@@ -66,7 +70,7 @@
     }
   ],
   "dependencies": {
-    "@masterportal/masterportalapi": "2.31.0",
+    "@masterportal/masterportalapi": "2.33.0",
     "@panter/vue-i18next": "^0.15.2",
     "@popperjs/core": "^2.11.6",
     "@turf/turf": "^6.5.0",
@@ -110,6 +114,7 @@
     "canvas": "^2.11.2",
     "chai": "^4.3.7",
     "child-process-promise": "^2.2.1",
+    "cross-env": "^7.0.3",
     "css-loader": "1.0.1",
     "dotenv": "^16.0.3",
     "esbuild-loader": "^3.1.0",
