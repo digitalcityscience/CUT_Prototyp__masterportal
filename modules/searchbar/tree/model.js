@@ -4,7 +4,7 @@ const TreeModel = Backbone.Model.extend(/** @lends TreeModel.prototype */{
     defaults: {
         inUse: false,
         minChars: 3,
-        searchType: "metadata",
+        searchType: "",
         layers: [],
         nodes: []
     },
@@ -16,7 +16,7 @@ const TreeModel = Backbone.Model.extend(/** @lends TreeModel.prototype */{
      * @param {object} config - Config parameters from config.json for searching in layer tree.
      * @property {boolean} inUse=false todo
      * @property {number} minChars=3 Minimum number of characters to start the search.
-     * @property {String} searchType="metadata" Decides whether the metadata or the name of a layer should be searched. Possible values: "metadata" and "name"
+     * @property {String} searchType="" Decides whether the metadata or the name of a layer should be searched. Possible values: "metadata" and "name" or not defined
      * @property {object[]} layers=[] todo
      * @property {object[]} nodes=[] todo
      * @fires Core.ConfigLoader#RadioRequestParserGetItemsByAttributes
@@ -168,6 +168,12 @@ const TreeModel = Backbone.Model.extend(/** @lends TreeModel.prototype */{
             else if (searchType === "metadata" && layer.metaName !== undefined) {
                 searchString = layer.metaName.replace(/ /g, "");
             }
+            else if (layer.metaName !== undefined) {
+                searchString = layer.metaName.replace(/ /g, "");
+            }
+            else if (layer.name !== undefined) {
+                searchString = layer.name.replace(/ /g, "");
+            }
 
             if (searchString.search(searchStringRegExp) !== -1) {
                 Radio.trigger("Searchbar", "pushHits", "hitList", layer);
@@ -254,7 +260,7 @@ const TreeModel = Backbone.Model.extend(/** @lends TreeModel.prototype */{
                 displayName = fachdatenName ? "Thema (" + fachdatenName + ")" : i18next.t("common:modules.searchbar.type.topicBaselayer");
             }
 
-            if (path !== "") {
+            if (path !== "" && this.get("searchType") !== "") {
                 metaName = path;
             }
             else if (Array.isArray(model.datasets) && model.datasets.length > 0 && typeof model.datasets[0].md_name === "string") {

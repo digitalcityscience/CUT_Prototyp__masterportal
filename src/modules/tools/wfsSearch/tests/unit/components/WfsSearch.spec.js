@@ -2,8 +2,6 @@ import Vuex from "vuex";
 import {config, mount, createLocalVue} from "@vue/test-utils";
 import {expect} from "chai";
 import sinon from "sinon";
-
-import WfsSearchLiteral from "../../../components/WfsSearchLiteral.vue";
 import WfsSearch from "../../../components/WfsSearch.vue";
 import WfsSearchModule from "../../../store/indexWfsSearch";
 
@@ -14,9 +12,9 @@ config.mocks.$t = key => key;
 
 describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
     const arbitraryFeature = {
-        getGeometryName: () => "Klein bottle"
-    };
-
+            getGeometryName: () => "Klein bottle"
+        },
+        instanceChangedOrig = WfsSearchModule.actions.instanceChanged;
     let instances,
         store;
 
@@ -35,6 +33,7 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
             resultList: {},
             literals: [{}]
         }];
+        WfsSearchModule.actions.instanceChanged = sinon.stub();
         store = new Vuex.Store({
             namespaces: true,
             modules: {
@@ -42,6 +41,18 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
                     namespaced: true,
                     modules: {
                         WfsSearch: WfsSearchModule
+                    }
+                },
+                MapMarker: {
+                    namespaced: true,
+                    actions: {
+                        removePointMarker: sinon.stub()
+                    }
+                },
+                Alerting: {
+                    namespaced: true,
+                    actions: {
+                        addSingleAlert: sinon.stub()
                     }
                 },
                 Language: {
@@ -52,31 +63,37 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
                 }
             },
             getters: {
-                uiStyle: sinon.stub()
+                uiStyle: sinon.stub(),
+                mobile: () => false
             }
         });
         store.commit("Tools/WfsSearch/setActive", true);
     });
     afterEach(sinon.restore);
+    after(() => {
+        WfsSearchModule.actions.instanceChanged = instanceChangedOrig;
+    });
 
     it("renders a literal", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
             localVue,
-            store
+            store,
+            stubs: ["WfsSearchLiteral"]
         });
 
-        expect(wrapper.findComponent(WfsSearchLiteral).exists()).to.be.true;
+        expect(wrapper.findComponent("wfssearchliteral-stub").exists()).to.be.true;
     });
     it("renders multiple literals if configured", () => {
         instances[0].literals.push({}, {});
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
             localVue,
-            store
+            store,
+            stubs: ["WfsSearchLiteral"]
         });
 
-        expect(wrapper.findAllComponents(WfsSearchLiteral).length).to.equal(3);
+        expect(wrapper.findAll("wfssearchliteral-stub").length).to.equal(3);
     });
     it("renders a select field to select the searchInstance if configured", () => {
         instances.push({
@@ -86,7 +103,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
             localVue,
-            store
+            store,
+            stubs: ["WfsSearchLiteral"]
         });
 
         expect(wrapper.find("#tool-wfsSearch-instances-select-label").exists()).to.be.true;
@@ -97,7 +115,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
             localVue,
-            store
+            store,
+            stubs: ["WfsSearchLiteral"]
         });
 
         expect(wrapper.find("#tool-wfsSearch-userHelp").exists()).to.be.true;
@@ -108,7 +127,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             resetButton = wrapper.find("#tool-wfsSearch-button-resetUI");
 
@@ -119,7 +139,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             searchInput = wrapper.find("#tool-wfsSearch-button-search");
 
@@ -133,7 +154,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             searchButton = wrapper.find("#tool-wfsSearch-button-showResults");
 
@@ -147,7 +169,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             searchButton = wrapper.find("#tool-wfsSearch-button-showResults");
 
@@ -162,7 +185,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
         store.commit("Tools/WfsSearch/setInstances", instances);
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             searchButton = wrapper.find("#tool-wfsSearch-button-showResults");
 
@@ -180,7 +204,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
 
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             pagination = wrapper.find("ul.pagination");
 
@@ -199,7 +224,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
 
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             pagination = wrapper.find("ul.pagination");
 
@@ -217,7 +243,8 @@ describe("src/modules/tools/wfsSearch/components/WfsSearch.vue", () => {
 
         const wrapper = mount(WfsSearch, {
                 localVue,
-                store
+                store,
+                stubs: ["WfsSearchLiteral"]
             }),
             pagination = wrapper.find("ul.pagination");
 
